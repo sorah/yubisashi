@@ -29,6 +29,7 @@ Yubisashi::Application.routes.draw do
   #
 
   post "/entries/:id.json", :to => 'entries#update', :format => :json
+  root :to => 'entries#index'
 
   # Sample resource route with sub-resources:
   #   resources :products do
