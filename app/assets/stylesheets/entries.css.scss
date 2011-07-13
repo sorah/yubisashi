@@ -7,7 +7,7 @@ body.entries {
   // Then, place scoped styles here.
 }
 
-.entry-content label{
+.entry-content label, .entry-editor label {
   float: left;
   width: 80px;
   font-weight: bold;
@@ -24,7 +24,6 @@ div.entry {
   display: none;
 }
 
-
 #entry-template {
   display: none;
 }
@@ -35,5 +34,9 @@ div.entry {
   padding: 7px;
   margin-bottom: 20px;
   color: #fff;
+  display: none;
+}
+
+.entry-editor {
   display: none;
 }

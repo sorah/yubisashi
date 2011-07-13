@@ -2,20 +2,39 @@
 
 <div class="entries">
   <% @entries.each do |entry| %>
-    <div class="entry">
+    <div class="entry" id="entry<%=entry.id%>">
+      <div class="error">
+        hi
+      </div>
+      <div class="entry-editor">
+        <label>English</label>
+        <div><input class="entry-english" type="text" value="<%=entry.english%>"></div>
+        <label>Japanese</label>
+        <div><input class="entry-japanese" type="text" value="<%=entry.japanese%>"></div>
+        <label>Romaji</label>
+        <div><input class="entry-romaji" type="text" value="<%=entry.romaji%>"></div>
+        <label>Comment</label>
+        <div><input class="entry-comment" type="text" value="<%=entry.comment%>"></div>
+      </div>
       <div class="entry-content">
         <label>English</label>
-        <div><%= entry.english %></div>
+        <div class="entry-english"><%= entry.english %></div>
+
         <label>Japanese</label>
-        <div><%= entry.japanese %> <a href="javascript:void(0)" class="romaji-link" id="romajilink<%=entry.id%>">(Romaji)</a></div>
+        <div>
+          <span class="entry-japanese"><%= entry.japanese %></span>&nbsp;
+          <a href="javascript:void(0)" class="romaji-link" id="romajilink<%=entry.id%>">(Romaji)</a>
+        </div>
+
         <div class="romaji" id="romaji<%= entry.id %>">
           <label>Romaji</label>
-          <div><%= entry.romaji %></div>
+          <div class="entry-romaji"><%= entry.romaji %></div>
         </div>
+
+        <div class="entry-comment"><%= entry.comment %></div>
       </div>
-      <div><%= entry.comment %></div>
       <div class="entry-links">
-        <%= link_to 'Edit', edit_entry_path(entry) %>&nbsp;
+        <a href="javascript:void(0)" class="entry-edit">Edit</a>&nbsp;
         <%= link_to 'Destroy', entry, remote: true, confirm: 'Are you sure?', method: :delete, class: "entry-destroy" %>
       </div>
     </div>
@@ -26,6 +45,7 @@
   <div class="error">
     hi
   </div>
+
   <div class="entry-content">
     <label>English</label>
     <div><input id="entry-new-en" type="text"></div>
@@ -42,6 +62,19 @@
 </div>
 
 <div class="entry" id="entry-template">
+  <div class="error">
+    hi
+  </div>
+  <div class="entry-editor">
+    <label>English</label>
+    <div><input id="entry-template-een" class="entry-english" type="text"></div>
+    <label>Japanese</label>
+    <div><input id="entry-template-eja" class="entry-japanese" type="text"></div>
+    <label>Romaji</label>
+    <div><input id="entry-template-eromaji" class="entry-romaji" type="text"></div>
+    <label>Comment</label>
+    <div><input id="entry-template-ecomment" class="entry-comment" type="text"></div>
+  </div>
   <div class="entry-content">
     <label>English</label>
     <div id="entry-template-en"></div>
@@ -51,10 +84,10 @@
       <label>Romaji</label>
       <div id="entry-template-romaji"></div>
     </div>
+    <div id="entry-template-comment"></div>
   </div>
-  <div id="entry-template-comment"></div>
   <div class="entry-links">
-    <a href="/entries/__/edit">Edit</a>&nbsp;
+    <a href="javascript:void(0)" class="entry-edit">Edit</a>&nbsp;
     <a href="/entries/__" data-confirm="Are you sure?" data-remote="true" data-method="delete" rel="nofollow" class="entry-destroy">Destroy</a>
   </div>
 </div>
