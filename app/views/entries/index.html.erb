@@ -1,25 +1,61 @@
 <h1>Yubisashi</h1>
 
-<% @entries.each do |entry| %>
-  <div class="entry">
-    <div class="entry-content">
-      <label>English</label>
-      <div><%= entry.english %></div>
-      <label>Japanese</label>
-      <div><%= entry.japanese %> <a href="javascript:void(0)">(Romaji)</a></div>
-      <div class="romaji" id="romaji<%= entry.id %>">
-        <label>Romaji</label>
-        <div><%= entry.romaji %></div>
+<div class="entries">
+  <% @entries.each do |entry| %>
+    <div class="entry">
+      <div class="entry-content">
+        <label>English</label>
+        <div><%= entry.english %></div>
+        <label>Japanese</label>
+        <div><%= entry.japanese %> <a href="javascript:void(0)" class="romaji-link" id="romajilink<%=entry.id%>">(Romaji)</a></div>
+        <div class="romaji" id="romaji<%= entry.id %>">
+          <label>Romaji</label>
+          <div><%= entry.romaji %></div>
+        </div>
+      </div>
+      <div><%= entry.comment %></div>
+      <div class="entry-links">
+        <%= link_to 'Edit', edit_entry_path(entry) %>&nbsp;
+        <%= link_to 'Destroy', entry, confirm: 'Are you sure?', method: :delete %>
       </div>
     </div>
-    <div><%= entry.comment %></div>
-    <div>
-      <%= link_to 'Show', entry %> <%= link_to 'Edit', edit_entry_path(entry) %>&nbsp;
-      <%= link_to 'Destroy', entry, confirm: 'Are you sure?', method: :delete %>
+  <% end %>
+</div>
+
+<div class="entry" id="entry-new">
+  <div class="error">
+    hi
+  </div>
+  <div class="entry-content">
+    <label>English</label>
+    <div><input id="entry-new-en" type="text"></div>
+    <label>Japanese</label>
+    <div><input id="entry-new-ja" type="text"></a></div>
+    <label>Romaji</label>
+    <div><input id="entry-new-romaji" type="text"></div>
+    <label>Comment</label>
+    <div><input id="entry-new-comment" type="text"></div>
+  </div>
+  <div class="entry-links">
+    <input type="button" value="Add" id="entry-new-add">
+  </div>
+</div>
+
+<div class="entry" id="entry-template">
+  <div class="entry-content">
+    <label>English</label>
+    <div id="entry-template-en"></div>
+    <label>Japanese</label>
+    <div><span id="entry-template-ja"></span> <a href="javascript:void(0)" class="romaji-link">(Romaji)</a></div>
+    <div class="romaji" id="romaji__">
+      <label>Romaji</label>
+      <div id="entry-template-romaji"></div>
     </div>
   </div>
-<% end %>
+  <div id="entry-template-comment"></div>
+  <div class="entry-links">
+    <a href="/entries/__/edit">Edit</a>&nbsp;
+    <a href="/entries/__" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Destroy</a>
+  </div>
+</div>
 
-<br />
-
-<%= link_to 'New Entry', new_entry_path %>

@@ -16,11 +16,24 @@ body.entries {
 div.entry {
   padding: 6px;
   border: 1px solid gray;
-
-
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .romaji {
   display: none;
 }
 
+
+#entry-template {
+  display: none;
+}
+
+.error {
+  border: 1px solid red;
+  background-color: #c00;
+  padding: 7px;
+  margin-bottom: 20px;
+  color: #fff;
+  display: none;
+}
