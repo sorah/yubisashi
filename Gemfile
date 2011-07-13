@@ -6,7 +6,6 @@ gem 'rake','0.9.2'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
 
 # Asset template engines
 gem 'sass-rails', "~> 3.1.0.rc"
@@ -23,6 +22,10 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+group :development do
+  gem 'sqlite3'
+end
 
 group :test do
   # Pretty printed test output
