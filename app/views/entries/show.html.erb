@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>English:</b>
+  <%= @entry.english %>
+</p>
+
+<p>
+  <b>Japanese:</b>
+  <%= @entry.japanese %>
+</p>
+
+<p>
+  <b>Romaji:</b>
+  <%= @entry.romaji %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @entry.comment %>
+</p>
+
+<p>
+  <b>Group:</b>
+  <%= @entry.group_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_entry_path(@entry) %> |
+<%= link_to 'Back', entries_path %>

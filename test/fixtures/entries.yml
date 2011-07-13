@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  english: MyString
+  japanese: MyString
+  romaji: MyString
+  comment: MyString
+  group_id: 1
+
+two:
+  english: MyString
+  japanese: MyString
+  romaji: MyString
+  comment: MyString
+  group_id: 1
