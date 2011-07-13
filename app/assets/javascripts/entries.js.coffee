@@ -26,10 +26,15 @@ create_entry_element = (json) ->
   $(foo)[0].id =""
 
   $(foo).find("a.romaji-link").click -> show_romaji(id)
+  destroy_bind $(foo).find("a.entry-destroy")[0]
   $(foo).find(".entry-links a").each (i,v) ->
     v.href = v.href.replace(/__/,json.id)
 
   $("div.entries").append(foo)
+
+destroy_bind = (v) ->
+  $(v).bind 'ajax:success', (data,status,xhr) -> $(v).closest("div.entry").fadeOut(800,((v)->v.remove()))
+  $(v).bind 'ajax:error', (xhr,status,error) -> alert(error)
 
 add_entry = (en,ja,romaji,comment) ->
   $("#entry-new input").attr("disabled", true)
@@ -69,6 +74,8 @@ add_entry = (en,ja,romaji,comment) ->
 $(document).ready ->
   $("a.romaji-link").each (i,v) ->
     $(v).click -> show_romaji(v.id.replace(/^romajilink/,""))
+  $("a.entry-destroy").each (i,v) -> destroy_bind(v)
+
   $("#entry-new-add").click ->
     add_entry $("#entry-new-en").val(),$("#entry-new-ja").val(),$("#entry-new-romaji").val(),$("#entry-new-comment").val()
     # create_entry_element 100,$("#entry-new-en").val(),$("#entry-new-ja").val(),$("#entry-new-romaji").val(),$("#entry-new-comment").val()

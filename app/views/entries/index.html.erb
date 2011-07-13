@@ -16,7 +16,7 @@
       <div><%= entry.comment %></div>
       <div class="entry-links">
         <%= link_to 'Edit', edit_entry_path(entry) %>&nbsp;
-        <%= link_to 'Destroy', entry, confirm: 'Are you sure?', method: :delete %>
+        <%= link_to 'Destroy', entry, remote: true, confirm: 'Are you sure?', method: :delete, class: "entry-destroy" %>
       </div>
     </div>
   <% end %>
@@ -55,7 +55,7 @@
   <div id="entry-template-comment"></div>
   <div class="entry-links">
     <a href="/entries/__/edit">Edit</a>&nbsp;
-    <a href="/entries/__" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Destroy</a>
+    <a href="/entries/__" data-confirm="Are you sure?" data-remote="true" data-method="delete" rel="nofollow" class="entry-destroy">Destroy</a>
   </div>
 </div>
 
