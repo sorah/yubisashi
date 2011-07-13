@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110713025248) do
+ActiveRecord::Schema.define(:version => 20110713030620) do
 
   create_table "entries", :force => true do |t|
     t.string   "english"
@@ -18,6 +18,13 @@ ActiveRecord::Schema.define(:version => 20110713025248) do
     t.string   "romaji"
     t.string   "comment"
     t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groups", :force => true do |t|
+    t.string   "name"
+    t.string   "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

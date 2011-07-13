@@ -1,30 +1,24 @@
-<h1>Listing entries</h1>
-
-<table>
-  <tr>
-    <th>English</th>
-    <th>Japanese</th>
-    <th>Romaji</th>
-    <th>Comment</th>
-    <th>Group</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<h1>Yubisashi</h1>
 
 <% @entries.each do |entry| %>
-  <tr>
-    <td><%= entry.english %></td>
-    <td><%= entry.japanese %></td>
-    <td><%= entry.romaji %></td>
-    <td><%= entry.comment %></td>
-    <td><%= entry.group_id %></td>
-    <td><%= link_to 'Show', entry %></td>
-    <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
-    <td><%= link_to 'Destroy', entry, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+  <div class="entry">
+    <div class="entry-content">
+      <label>English</label>
+      <div><%= entry.english %></div>
+      <label>Japanese</label>
+      <div><%= entry.japanese %> <a href="javascript:void(0)">(Romaji)</a></div>
+      <div class="romaji" id="romaji<%= entry.id %>">
+        <label>Romaji</label>
+        <div><%= entry.romaji %></div>
+      </div>
+    </div>
+    <div><%= entry.comment %></div>
+    <div>
+      <%= link_to 'Show', entry %> <%= link_to 'Edit', edit_entry_path(entry) %>&nbsp;
+      <%= link_to 'Destroy', entry, confirm: 'Are you sure?', method: :delete %>
+    </div>
+  </div>
 <% end %>
-</table>
 
 <br />
 

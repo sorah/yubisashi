@@ -6,3 +6,21 @@ body.entries {
   // Add the entries class to your body tag
   // Then, place scoped styles here.
 }
+
+.entry-content label{
+  float: left;
+  width: 80px;
+  font-weight: bold;
+}
+
+div.entry {
+  padding: 6px;
+  border: 1px solid gray;
+
+
+}
+
+.romaji {
+  display: none;
+}
+
