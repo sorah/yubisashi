@@ -1,5 +1,15 @@
 <h1>Yubisashi</h1>
 
+<div style="display:none">
+  <select class="groupselect">
+    <option value="-" class="groupdefault" selected>-</option>
+    <% @groups.each_with_index do |group,i| %>
+      <option value="<%=group.id%>"><%=group.name%></option>
+    <% end %>
+    <option value="add">Add new...</option>
+  </select>
+</div>
+
 <div class="entries">
   <% @entries.each do |entry| %>
     <div class="entry" id="entry<%=entry.id%>">
@@ -15,6 +25,8 @@
         <div><input class="entry-romaji" type="text" value="<%=entry.romaji%>"></div>
         <label>Comment</label>
         <div><input class="entry-comment" type="text" value="<%=entry.comment%>"></div>
+        <label>Group</label>
+        <div class="fillgroup" data-val="<%= entry.group_id ? entry.group_id : "" %>"></div>
       </div>
       <div class="entry-content">
         <label>English</label>
@@ -55,6 +67,8 @@
     <div><input id="entry-new-romaji" type="text"></div>
     <label>Comment</label>
     <div><input id="entry-new-comment" type="text"></div>
+    <label>Group</label>
+    <div class="fillgroup" data-val="-"></div>
   </div>
   <div class="entry-links">
     <input type="button" value="Add" id="entry-new-add">
@@ -74,6 +88,8 @@
     <div><input id="entry-template-eromaji" class="entry-romaji" type="text"></div>
     <label>Comment</label>
     <div><input id="entry-template-ecomment" class="entry-comment" type="text"></div>
+    <label>Group</label>
+    <div class="fillgroup"></div>
   </div>
   <div class="entry-content">
     <label>English</label>

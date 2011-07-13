@@ -4,6 +4,7 @@ class EntriesController < ApplicationController
   # GET /entries.json
   def index
     @entries = Entry.all
+    @groups = Group.all.select{|g| @entries.any?{|e| e.group_id == g.id } }
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,6 +42,10 @@ class EntriesController < ApplicationController
   # POST /entries
   # POST /entries.json
   def create
+    if (a = params.delete(:group))
+      params[:entry][:group_id] = set_group(a)
+    end
+
     @entry = Entry.new(params[:entry])
 
     respond_to do |format|
@@ -59,6 +64,10 @@ class EntriesController < ApplicationController
   # PUT /entries/1.json
   def update
     @entry = Entry.find(params[:id])
+
+    if (a = params.delete(:group))
+      params[:entry][:group_id] = set_group(a)
+    end
 
     respond_to do |format|
       if @entry.update_attributes(params[:entry])
@@ -80,6 +89,19 @@ class EntriesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to entries_url }
       format.json { head :ok }
+    end
+  end
+
+  private
+
+  def set_group(str)
+    case str
+    when /^add:(.+)$/
+      Group.create(name: $1).id
+    when "-"
+      nil
+    else
+      Group.find(str.to_i).id
     end
   end
 end
