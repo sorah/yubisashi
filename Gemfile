@@ -27,6 +27,11 @@ group :development do
   gem 'sqlite3'
 end
 
+group :production do
+  gem "pg"
+  gem "therubyracer-heroku"
+end
+
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
