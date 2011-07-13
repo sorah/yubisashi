@@ -47,7 +47,7 @@ create_entry_element = (json) ->
   $(foo).find(".entry-links a").each (i,v) ->
     v.href = v.href.replace(/__/,json.id)
 
-  $("div.entries").append(foo)
+  $("div.group[data-group=\"#{va}\"] div.entries").append(foo)
 
 destroy_bind = (v) ->
   $(v).bind 'ajax:success', (data,status,xhr) -> $(v).closest("div.entry").fadeOut(150)
@@ -82,7 +82,7 @@ edit_done = (entry,v) ->
   $.ajax(
     type: "POST"
     url: "/entries/#{id}.json"
-    dataType: "json"
+    dataType: "text"
     data:
       entry:
         english: en
@@ -97,9 +97,11 @@ edit_done = (entry,v) ->
       content.find(".entry-english").text en
       content.find(".entry-romaji").text romaji
       content.find(".entry-comment").text comment
+
       editor.hide()
       content.show()
       $(v).text("Edit")
+      $(entry).appendTo("div.group[data-group=\"#{group}\"] div.entries")
       v.editing = false
     error: (xhr,txt,err) ->
       if err == "Unprocessable Entity"

@@ -10,44 +10,53 @@
   </select>
 </div>
 
-<div class="entries">
-  <% @entries.each do |entry| %>
-    <div class="entry" id="entry<%=entry.id%>">
-      <div class="error">
-        hi
-      </div>
-      <div class="entry-editor">
-        <label>English</label>
-        <div><input class="entry-english" type="text" value="<%=entry.english%>"></div>
-        <label>Japanese</label>
-        <div><input class="entry-japanese" type="text" value="<%=entry.japanese%>"></div>
-        <label>Romaji</label>
-        <div><input class="entry-romaji" type="text" value="<%=entry.romaji%>"></div>
-        <label>Comment</label>
-        <div><input class="entry-comment" type="text" value="<%=entry.comment%>"></div>
-        <label>Group</label>
-        <div class="fillgroup" data-val="<%= entry.group_id ? entry.group_id : "" %>"></div>
-      </div>
-      <div class="entry-content">
-        <label>English</label>
-        <div class="entry-english"><%= entry.english %></div>
+<div class="groups">
+  <% @ens.each do |group| %>
+    <div class="group" data-group="<%= group[:id] %>">
+      <% if group[:name] %>
+        <h2><%= group[:name] %></h2>
+      <% end %>
+      <div class="entries">
+        <% group[:entries].each do |entry| %>
+          <div class="entry" id="entry<%=entry.id%>">
+            <div class="error">
+              hi
+            </div>
+            <div class="entry-editor">
+              <label>English</label>
+              <div><input class="entry-english" type="text" value="<%=entry.english%>"></div>
+              <label>Japanese</label>
+              <div><input class="entry-japanese" type="text" value="<%=entry.japanese%>"></div>
+              <label>Romaji</label>
+              <div><input class="entry-romaji" type="text" value="<%=entry.romaji%>"></div>
+              <label>Comment</label>
+              <div><input class="entry-comment" type="text" value="<%=entry.comment%>"></div>
+              <label>Group</label>
+              <div class="fillgroup" data-val="<%= entry.group_id ? entry.group_id : "" %>"></div>
+            </div>
+            <div class="entry-content">
+              <label>English</label>
+              <div class="entry-english"><%= entry.english %></div>
 
-        <label>Japanese</label>
-        <div>
-          <span class="entry-japanese"><%= entry.japanese %></span>&nbsp;
-          <a href="javascript:void(0)" class="romaji-link" id="romajilink<%=entry.id%>">(Romaji)</a>
-        </div>
+              <label>Japanese</label>
+              <div>
+                <span class="entry-japanese"><%= entry.japanese %></span>&nbsp;
+                <a href="javascript:void(0)" class="romaji-link" id="romajilink<%=entry.id%>">(Romaji)</a>
+              </div>
 
-        <div class="romaji" id="romaji<%= entry.id %>">
-          <label>Romaji</label>
-          <div class="entry-romaji"><%= entry.romaji %></div>
-        </div>
+              <div class="romaji" id="romaji<%= entry.id %>">
+                <label>Romaji</label>
+                <div class="entry-romaji"><%= entry.romaji %></div>
+              </div>
 
-        <div class="entry-comment"><%= entry.comment %></div>
-      </div>
-      <div class="entry-links">
-        <a href="javascript:void(0)" class="entry-edit">Edit</a>&nbsp;
-        <%= link_to 'Destroy', entry, remote: true, confirm: 'Are you sure?', method: :delete, class: "entry-destroy" %>
+              <div class="entry-comment"><%= entry.comment %></div>
+            </div>
+            <div class="entry-links">
+              <a href="javascript:void(0)" class="entry-edit">Edit</a>&nbsp;
+              <%= link_to 'Destroy', entry, remote: true, confirm: 'Are you sure?', method: :delete, class: "entry-destroy" %>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
   <% end %>

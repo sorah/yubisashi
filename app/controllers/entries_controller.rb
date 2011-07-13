@@ -3,12 +3,14 @@ class EntriesController < ApplicationController
   # GET /entries
   # GET /entries.json
   def index
-    @entries = Entry.all
-    @groups = Group.all.select{|g| @entries.any?{|e| e.group_id == g.id } }
+    g = Group.all(:include => :entries)
+    @groups = g.reject{|group| group.entries.empty? }
+    @ens = g.map{|group| {name: group.name, id: group.id, entries: group.entries} }
+    @ens.unshift({entries: Entry.all(conditions: {group_id: nil}), id: "-"})
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @entries }
+      format.json { render json: {groups: @groups, sections: @ens} }
     end
   end
 
