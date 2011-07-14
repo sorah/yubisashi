@@ -4,6 +4,10 @@
   <title>Yubisashi</title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
+  <% if /iPhone|iPod|Android/i =~ request.env["HTTP_USER_AGENT"] %>
+    <meta name="viewport" content="width=320, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0, ">
+    <%= stylesheet_link_tag "smartphone" %>
+  <% end %>
   <%= csrf_meta_tags %>
 </head>
 <body>
